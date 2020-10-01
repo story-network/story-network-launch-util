@@ -1,0 +1,29 @@
+/*
+ * Created on Mon Sep 28 2020
+ *
+ * Copyright (c) storycraft. Licensed under the MIT Licence.
+ */
+
+plugins {
+    id 'java'
+}
+
+// Info
+group 'sh.pancake'
+version '1.0.0'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+compileJava.options.encoding = 'UTF-8'
+
+repositories {
+
+    jcenter()
+    mavenCentral()
+
+}
+
+dependencies {
+    implementation 'com.google.code.gson:gson:2.8.6'
+}
