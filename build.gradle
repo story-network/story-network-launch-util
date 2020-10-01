@@ -12,7 +12,7 @@ plugins {
 group 'sh.pancake'
 version '1.0.0'
 
-targetCompatibility = 1.9
+sourceCompatibility = 1.9
 targetCompatibility = 1.9
 
 compileJava.options.encoding = 'UTF-8'
