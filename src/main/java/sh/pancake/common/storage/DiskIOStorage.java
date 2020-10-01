@@ -17,7 +17,7 @@ import java.io.IOException;
 /*
  * Store file objects
  */
-public class DiskIOStorage extends Storage<byte[]> {
+public class DiskIOStorage implements IStorage<byte[]> {
 
     private File dir;
 
@@ -35,6 +35,11 @@ public class DiskIOStorage extends Storage<byte[]> {
 
     public File getReference(String name) {
         return new File(dir, name);
+    }
+
+    @Override
+    public boolean exists(String name) {
+        return getReference(name).exists();
     }
 
     @Override
