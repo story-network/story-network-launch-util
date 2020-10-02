@@ -6,6 +6,7 @@
 
 plugins {
     id 'java'
+    id 'maven-publish'
 }
 
 // Info
@@ -26,4 +27,32 @@ repositories {
 
 dependencies {
     implementation 'com.google.code.gson:gson:2.8.6'
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main/java'
+        }
+
+        resources {
+            srcDirs files('src/main/resources')
+        }
+    }
+}
+
+publishing {
+    repositories {
+        maven {
+            name = 'StoryNetwork'
+            url = uri('../maven')
+        }
+    }
+
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId = 'story-network-common'
+            from components.java
+        }
+    }
 }
