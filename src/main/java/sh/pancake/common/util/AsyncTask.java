@@ -46,11 +46,15 @@ public class AsyncTask<T> {
     private volatile T result;
     private volatile Throwable throwable;
 
+    private boolean joined;
+
     public AsyncTask(AsyncFunction<T> func) {
         this.func = func;
 
         this.onDone = null;
         this.onExcept = null;
+
+        this.joined = false;
 
         this.internalTask = CompletableFuture.supplyAsync(this::invokeTask, executor);
     }
@@ -64,6 +68,8 @@ public class AsyncTask<T> {
         } catch (Throwable t) {
             throwable = t;
         }
+
+        if (joined) return result;
 
         if (result != null && onDone != null) {
             onDone.then(result);
@@ -98,6 +104,16 @@ public class AsyncTask<T> {
         }
 
         return this;
+    }
+
+    public T join() throws Throwable {
+        this.joined = true;
+
+        T res = this.internalTask.join();
+
+        if (throwable != null) throw throwable;
+
+        return res;
     }
 
     @FunctionalInterface
