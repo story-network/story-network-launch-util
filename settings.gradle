@@ -4,4 +4,4 @@
  * Copyright (c) storycraft. Licensed under the MIT Licence.
  */
 
-rootProject.name = 'story-network-common'
+rootProject.name = 'story-network-launch-util'
