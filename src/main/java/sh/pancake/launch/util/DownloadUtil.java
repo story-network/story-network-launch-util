@@ -6,6 +6,7 @@
 
 package sh.pancake.launch.util;
 
+import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,7 +20,7 @@ public class DownloadUtil {
 
     public static byte[] fetchData(URL url) throws IOException {
         try (
-            InputStream stream = openDownloadStream(url);
+            InputStream stream = new BufferedInputStream(openDownloadStream(url));
             ByteArrayOutputStream output = new ByteArrayOutputStream();
         ) {
             stream.transferTo(output);
