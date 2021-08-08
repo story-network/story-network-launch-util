@@ -11,16 +11,14 @@ plugins {
 
 // Info
 group 'sh.pancake'
-version '1.0.0'
+version '0.1.0'
 
-sourceCompatibility = 1.9
-targetCompatibility = 1.9
+sourceCompatibility = 11
+targetCompatibility = 11
 
 compileJava.options.encoding = 'UTF-8'
 
 repositories {
-
-    jcenter()
     mavenCentral()
 
 }
@@ -51,7 +49,7 @@ publishing {
 
     publications {
         mavenJava(MavenPublication) {
-            artifactId = 'story-network-common'
+            artifactId = 'story-network-launch-util'
             from components.java
         }
     }

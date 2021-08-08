@@ -7,6 +7,7 @@
 package sh.pancake.common.util;
 
 import java.io.IOException;
+import java.net.URL;
 
 import com.google.gson.Gson;
 
@@ -15,19 +16,15 @@ import sh.pancake.common.object.VersionManifest;
 
 public class MCLauncherUtil {
 
-    public static String fetchRawVersionManifest() {
-        try {
-            return DownloadUtil.fetchString("https://launchermeta.mojang.com/mc/game/version_manifest.json");
-        } catch(IOException e) {
-            return null;
-        }
+    public static String fetchRawVersionManifest() throws IOException {
+        return DownloadUtil.fetchString(new URL("https://launchermeta.mojang.com/mc/game/version_manifest.json"));
     }
 
     public static VersionManifest getManifestFromJson(String json) {
         return new Gson().fromJson(json, VersionManifest.class);
     }
     
-    public static VersionManifest fetchVersionManifest() {
+    public static VersionManifest fetchVersionManifest() throws IOException {
         String rawManifest = fetchRawVersionManifest();
 
         if (rawManifest == null) return null;
@@ -35,7 +32,7 @@ public class MCLauncherUtil {
         return getManifestFromJson(rawManifest);
     }
 
-    public static String fetchRawVersionInfo(VersionManifest manifest, String version) {
+    public static String fetchRawVersionInfo(VersionManifest manifest, String version) throws IOException {
         if (version == null) return null;
 
         VersionManifest.Version target = null;
@@ -49,14 +46,10 @@ public class MCLauncherUtil {
 
         if (target == null) return null;
 
-        try {
-            return DownloadUtil.fetchString(target.url);
-        } catch(IOException e) {
-            return null;
-        }
+        return DownloadUtil.fetchString(new URL(target.url));
     }
 
-    public static String fetchRawVersionInfo(String version) {
+    public static String fetchRawVersionInfo(String version) throws IOException {
         return fetchRawVersionInfo(fetchVersionManifest(), version);
     }
 
@@ -64,7 +57,7 @@ public class MCLauncherUtil {
         return new Gson().fromJson(json, VersionInfo.class);
     }
 
-    public static VersionInfo fetchVersionInfo(VersionManifest manifest, String version) {
+    public static VersionInfo fetchVersionInfo(VersionManifest manifest, String version) throws IOException {
         String rawVersionInfo = fetchRawVersionManifest();
 
         if (rawVersionInfo == null) return null;
@@ -72,7 +65,7 @@ public class MCLauncherUtil {
         return getInfoFromJson(rawVersionInfo);
     }
 
-    public static VersionInfo fetchVersionInfo(String version) {
+    public static VersionInfo fetchVersionInfo(String version) throws IOException {
         return fetchVersionInfo(fetchVersionManifest(), version);
     }
 
