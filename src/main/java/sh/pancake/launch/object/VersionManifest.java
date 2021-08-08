@@ -4,7 +4,7 @@
  * Copyright (c) storycraft. Licensed under the MIT Licence.
  */
 
-package sh.pancake.common.object;
+package sh.pancake.launch.object;
 
 import com.google.gson.annotations.SerializedName;
 

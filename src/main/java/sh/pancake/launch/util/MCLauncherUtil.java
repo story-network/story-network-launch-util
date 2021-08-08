@@ -4,15 +4,15 @@
  * Copyright (c) storycraft. Licensed under the MIT Licence.
  */
 
-package sh.pancake.common.util;
+package sh.pancake.launch.util;
 
 import java.io.IOException;
 import java.net.URL;
 
 import com.google.gson.Gson;
 
-import sh.pancake.common.object.VersionInfo;
-import sh.pancake.common.object.VersionManifest;
+import sh.pancake.launch.object.VersionInfo;
+import sh.pancake.launch.object.VersionManifest;
 
 public class MCLauncherUtil {
 

@@ -4,7 +4,7 @@
  * Copyright (c) storycraft. Licensed under the MIT Licence.
  */
 
-package sh.pancake.common.util;
+package sh.pancake.launch.util;
 
 import java.io.IOException;
 import java.io.InputStream;
