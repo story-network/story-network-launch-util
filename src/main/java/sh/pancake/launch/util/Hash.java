@@ -11,6 +11,8 @@ import java.io.InputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import javax.annotation.Nullable;
+
 public class Hash {
 
     private static byte[] hashFrom(MessageDigest md, InputStream stream) throws IOException {
@@ -24,6 +26,7 @@ public class Hash {
         return md.digest();
     }
 
+    @Nullable
     public static byte[] sha1From(InputStream stream) throws IOException {
         try {
             return hashFrom(MessageDigest.getInstance("SHA-1"), stream);
@@ -34,6 +37,7 @@ public class Hash {
         return null;
     }
     
+    @Nullable
     public static byte[] sha512From(InputStream stream) throws IOException {
         try {
             return hashFrom(MessageDigest.getInstance("SHA-512"), stream);
@@ -44,6 +48,7 @@ public class Hash {
         return null;
     }
 
+    @Nullable
     public static byte[] md5From(InputStream stream) throws IOException {
         try {
             return hashFrom(MessageDigest.getInstance("MD5"), stream);

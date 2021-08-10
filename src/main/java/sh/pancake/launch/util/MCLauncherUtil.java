@@ -9,6 +9,8 @@ package sh.pancake.launch.util;
 import java.io.IOException;
 import java.net.URL;
 
+import javax.annotation.Nullable;
+
 import com.google.gson.Gson;
 
 import sh.pancake.launch.object.VersionInfo;
@@ -23,7 +25,8 @@ public class MCLauncherUtil {
     public static VersionManifest getManifestFromJson(String json) {
         return new Gson().fromJson(json, VersionManifest.class);
     }
-    
+
+    @Nullable
     public static VersionManifest fetchVersionManifest() throws IOException {
         String rawManifest = fetchRawVersionManifest();
 
@@ -32,6 +35,7 @@ public class MCLauncherUtil {
         return getManifestFromJson(rawManifest);
     }
 
+    @Nullable
     public static String fetchRawVersionInfo(VersionManifest manifest, String version) throws IOException {
         if (version == null) return null;
 
@@ -49,6 +53,7 @@ public class MCLauncherUtil {
         return DownloadUtil.fetchString(new URL(target.url));
     }
 
+    @Nullable
     public static String fetchRawVersionInfo(String version) throws IOException {
         return fetchRawVersionInfo(fetchVersionManifest(), version);
     }
@@ -57,6 +62,7 @@ public class MCLauncherUtil {
         return new Gson().fromJson(json, VersionInfo.class);
     }
 
+    @Nullable
     public static VersionInfo fetchVersionInfo(VersionManifest manifest, String version) throws IOException {
         String rawVersionInfo = fetchRawVersionManifest();
 
@@ -65,6 +71,7 @@ public class MCLauncherUtil {
         return getInfoFromJson(rawVersionInfo);
     }
 
+    @Nullable
     public static VersionInfo fetchVersionInfo(String version) throws IOException {
         return fetchVersionInfo(fetchVersionManifest(), version);
     }
